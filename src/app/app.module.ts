@@ -12,6 +12,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {Page1} from "../pages/page1/page1";
 import {Page2} from "../pages/page2/page2";
 import { BinoneProvider } from '../providers/binone/binone';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { BinoneProvider } from '../providers/binone/binone';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +45,8 @@ import { BinoneProvider } from '../providers/binone/binone';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BinoneProvider
+    BinoneProvider,
+    HttpClientModule
   ]
 })
 export class AppModule {}
