@@ -15,7 +15,15 @@
   <ion-list *ngFor="let new of news">
     <ion-item>
       {{new.media_name}}
+      <span>{{new.abstract}}</span>
     </ion-item>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="dots">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
 
