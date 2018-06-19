@@ -13,7 +13,7 @@ import {HEROES} from "./mock";
 */
 @Injectable()
 export class BinoneProvider {
-  path: string = 'https://m.toutiao.com/list/?tag=news_society&ac=wap&count=5&format=json_raw&as=A1053B51170D35E&cp=5B17FDA3C51EFE1&min_behot_time=0&_signature=csEwaAAAKdmOuNoU3eXa6nLBMH&i=';
+  path: string = 'https://m.toutiao.com/list/?tag=news_society&ac=wap&count=8&format=json_raw&as=A1053B51170D35E&cp=5B17FDA3C51EFE1&min_behot_time=0&_signature=csEwaAAAKdmOuNoU3eXa6nLBMH&i=';
 
   constructor(public http: HttpClient) {
     console.log('Hello BinoneProvider Provider');

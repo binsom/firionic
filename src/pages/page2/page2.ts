@@ -16,6 +16,8 @@ export class Page2 {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
+  testes:string[];
+  kiss:Array<{tt:string,vv:string}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -25,22 +27,21 @@ export class Page2 {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
       'american-football', 'boat', 'bluetooth', 'build'];
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
+    this.testes = ['1111111','2222222','333333333','44444444'];
+    this.kiss = [];
+    for(var i=0;i<4;i++){
+      this.kiss.push({
+        tit:'tittit'+i,
+        tes:'This is #'+i,
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
+      })
     }
   }
 
   ionViewDidLoad() {
     console.log('Hello Page2 Page');
   }
-
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
+  itemTap(event, item){
     this.navCtrl.push(Page1, {
       item: item
     });
