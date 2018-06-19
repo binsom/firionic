@@ -5,13 +5,17 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      {{ item }}
+    </ion-item>
+  </ion-list>
   <!--<ion-list *ngFor="let bb of binheros">-->
     <!--<ion-item>-->
         <!--{{bb.title}}-->
     <!--</ion-item>-->
   <!--</ion-list>-->
-
   <ion-list *ngFor="let new of news">
     <ion-item>
       {{new.media_name}}
