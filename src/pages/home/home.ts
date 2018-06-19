@@ -8,7 +8,7 @@ import {BinoneProvider} from "../../providers/binone/binone";
 })
 export class HomePage {
   binheros:any;
-  news:any;
+  news:[];
 
   constructor(public navCtrl: NavController,public binoneProvider:BinoneProvider) {
 
@@ -29,7 +29,10 @@ export class HomePage {
   // }
   f(){
     this.binoneProvider.newsTech().subscribe(res => {
-        console.log(res);
+        // console.log(res);
+        this.news = res.data;
+        console.log(this.news,666);
+        // console.log(this.news.data[0].media_name,666);
       });
   }
 
