@@ -15,6 +15,7 @@ import { BinoneProvider } from '../providers/binone/binone';
 import { HttpClientModule } from '@angular/common/http';
 import {CityProvider} from "../providers/binone/city";
 import {CitydetailPage} from "../pages/cityDetail/citydetail";
+import {SerachProvider} from "../providers/binone/serach";
 
 
 
@@ -51,7 +52,8 @@ import {CitydetailPage} from "../pages/cityDetail/citydetail";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BinoneProvider,
     HttpClientModule,
-    CityProvider
+    CityProvider,
+    SerachProvider
   ]
 })
 export class AppModule {}
