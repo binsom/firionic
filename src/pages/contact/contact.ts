@@ -37,11 +37,12 @@ export class ContactPage {
   hot(){
     this.cityProvider.getCity('hot').subscribe(res => {
        this.hotCitys = res;
+       console.log(this.hotCitys,555)
     });
   }
 
-  toDetail(){
-    this.navCtrl.push(CitydetailPage);
+  toDetail(detail){
+    this.navCtrl.push(CitydetailPage,detail);
   }
 
 }
