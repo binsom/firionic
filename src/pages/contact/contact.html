@@ -14,4 +14,14 @@
       @ionicframework
     </ion-item>
   </ion-list>
+
+  <div *ngFor="let hot of hotCitys">
+    {{hot.name}}
+  </div>
+
+
+   <div *ngFor="let city of finCity">
+     <span>{{city.sort}}</span>
+     <a *ngFor="let cc of city.cont">{{cc.name}}</a>
+   </div>
 </ion-content>
