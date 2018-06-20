@@ -29,7 +29,7 @@ export class ContactPage {
       }
       this.groupCitys.sort();
       for(let i=0;i<this.groupCitys.length;i++){
-        this.finCity.push({'sort':this.groupCitys[i],'cont':res[this.groupCitys[i]]})
+        this.finCity.push({'sort':this.groupCitys[i],'cityContents':res[this.groupCitys[i]]})
       }
     });
   }
