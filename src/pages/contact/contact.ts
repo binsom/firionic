@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {CityProvider} from "../../providers/binone/city";
+import {CitydetailPage} from "../cityDetail/citydetail";
 
 @Component({
   selector: 'page-contact',
@@ -37,6 +38,10 @@ export class ContactPage {
     this.cityProvider.getCity('hot').subscribe(res => {
        this.hotCitys = res;
     });
+  }
+
+  toDetail(){
+    this.navCtrl.push(CitydetailPage);
   }
 
 }

@@ -13,6 +13,8 @@ import {Page1} from "../pages/page1/page1";
 import {Page2} from "../pages/page2/page2";
 import { BinoneProvider } from '../providers/binone/binone';
 import { HttpClientModule } from '@angular/common/http';
+import {CityProvider} from "../providers/binone/city";
+import {CitydetailPage} from "../pages/cityDetail/citydetail";
 
 
 
@@ -24,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     TabsPage,
     Page1,
-    Page2
+    Page2,
+    CitydetailPage
   ],
   imports: [
     BrowserModule,
@@ -39,14 +42,16 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     TabsPage,
     Page1,
-    Page2
+    Page2,
+    CitydetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BinoneProvider,
-    HttpClientModule
+    HttpClientModule,
+    CityProvider
   ]
 })
 export class AppModule {}

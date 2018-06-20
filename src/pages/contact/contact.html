@@ -15,7 +15,7 @@
     </ion-item>
   </ion-list>
 
-  <div *ngFor="let hot of hotCitys">
+  <div *ngFor="let hot of hotCitys" (click)="toDetail()">
     {{hot.name}}
   </div>
 
