@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {CityProvider} from "../providers/binone/city";
 import {CitydetailPage} from "../pages/cityDetail/citydetail";
 import {SerachProvider} from "../providers/binone/serach";
+import {FoodProvider} from "../providers/binone/food";
+import {FoodPage} from "../pages/food/food";
 
 
 
@@ -28,7 +30,8 @@ import {SerachProvider} from "../providers/binone/serach";
     TabsPage,
     Page1,
     Page2,
-    CitydetailPage
+    CitydetailPage,
+    FoodPage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import {SerachProvider} from "../providers/binone/serach";
     TabsPage,
     Page1,
     Page2,
-    CitydetailPage
+    CitydetailPage,
+    FoodPage
   ],
   providers: [
     StatusBar,
@@ -53,7 +57,8 @@ import {SerachProvider} from "../providers/binone/serach";
     BinoneProvider,
     HttpClientModule,
     CityProvider,
-    SerachProvider
+    SerachProvider,
+    FoodProvider
   ]
 })
 export class AppModule {}

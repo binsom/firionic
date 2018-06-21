@@ -23,7 +23,6 @@ export class ContactPage {
 
   showCitys(){
     this.cityProvider.getCity('group').subscribe(res => {
-      // console.log(res,'数据')
       for(var key in res){
           this.groupCitys.push(key);
       }
@@ -44,5 +43,6 @@ export class ContactPage {
   toDetail(detail){
     this.navCtrl.push(CitydetailPage,detail);
   }
+
 
 }
