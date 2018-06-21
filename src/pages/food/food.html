@@ -5,16 +5,13 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>food</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding>
-  <ion-slides pager loop="true" autoplay="1000" *ngIf="len >=1">
+<ion-content padding>1
+  <ion-slides #slides pager loop="true" autoplay="1000" *ngIf="len >=1">
     <ion-slide *ngFor="let foodImg of imgUrls">
       <img src="{{foodImg.img}}">
     </ion-slide>

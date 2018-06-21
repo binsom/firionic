@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { Component,ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,Slides} from 'ionic-angular';
 import {FoodProvider} from "../../providers/binone/food";
 
 /**
@@ -15,6 +15,7 @@ import {FoodProvider} from "../../providers/binone/food";
   templateUrl: 'food.html',
 })
 export class FoodPage {
+  @ViewChild('slides') slides: Slides;
   public foods:any;
   public imgUrls=[];
   public prefixtion = 'https://fuss10.elemecdn.com';
@@ -39,6 +40,14 @@ export class FoodPage {
       this.len=this.imgUrls.length;
       console.log(this.imgUrls,'===ffffffffff');
     });
+  }
+  //页面进入时启动自动播放
+  ionViewDidEnter(){
+    this.slides.startAutoplay();
+  }
+  //页面离开时停止自动播放
+  ionViewDidLeave(){
+    this.slides.stopAutoplay();
   }
 
 }
