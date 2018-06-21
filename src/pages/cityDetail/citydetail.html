@@ -14,7 +14,6 @@
 
 
 <ion-content padding>
-  <ion-searchbar></ion-searchbar>
-  <button ion-button (click)="search()">提交</button>
-
+  <input [(ngModel)]="searchInput.name" placeholder="name"/>
+  <button ion-button (click)="search(searchInput.name)">提交</button>
 </ion-content>
