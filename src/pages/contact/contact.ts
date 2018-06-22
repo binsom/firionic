@@ -31,6 +31,8 @@ export class ContactPage {
         this.finCity.push({'sort':this.groupCitys[i],'cityContents':res[this.groupCitys[i]]})
       }
     });
+
+    console.log(this.finCity,123)
   }
 
   hot(){

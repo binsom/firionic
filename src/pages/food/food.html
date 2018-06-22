@@ -12,8 +12,10 @@
 
 <ion-content padding>
   <ion-slides #slides pager loop="true" autoplay="1000" *ngIf="len >=1">
-    <ion-slide *ngFor="let foodImg of imgUrls">
-      <img src="{{foodImg.img}}">
+    <ion-slide *ngFor="let foodImg of pictureArr">
+      <div *ngFor="let food of foodImg.img">
+        <img class="foodImg" src="{{food.image_url}}">
+      </div>
     </ion-slide>
   </ion-slides>
 </ion-content>

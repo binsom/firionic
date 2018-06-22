@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams,Slides} from 'ionic-angular';
+import { IonicPage, NavController, NavParams/*,Slides*/} from 'ionic-angular';
 import {FoodProvider} from "../../providers/binone/food";
 
 /**
@@ -21,6 +21,9 @@ export class FoodPage {
   public prefixtion = 'https://fuss10.elemecdn.com';
   public len:any;
 
+  public pictureArr=[];
+  public pictureArrLen:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public foodProvider:FoodProvider) {
   }
 
@@ -32,12 +35,19 @@ export class FoodPage {
   }
   getFood(){
     this.foodProvider.getFood().subscribe(res => {
+      console.log(res,'===res');
       for(let i=0;i<res.length;i++){
-        this.imgUrls.push({img:this.prefixtion+res[i].image_url,title:res[i].title});
+         res[i].image_url = this.prefixtion+res[i].image_url;
+         this.imgUrls.push(res[i].image_url);
       }
       this.foods = res;
       this.len = this.imgUrls.length;
-      console.log(this.imgUrls,'===ffffffffff');
+      this.pictureArrLen = this.len/4;
+      //把res转为数组对象 [{ index:j,img:[]} ]
+      for(let j=0;j<this.pictureArrLen;j++){
+        this.pictureArr.push({index:j,img:res.splice(0,4)});
+      }
+      console.log(this.pictureArr,'===ffffffffff');
     });
   }
   // //页面进入时启动自动播放
