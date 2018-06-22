@@ -38,16 +38,16 @@ export class FoodPage {
       console.log(res,'===res');
       for(let i=0;i<res.length;i++){
          res[i].image_url = this.prefixtion+res[i].image_url;
-         this.imgUrls.push(res[i].image_url);
       }
       this.foods = res;
-      this.len = this.imgUrls.length;
+      this.len = res.length;
+      //多少组
       this.pictureArrLen = this.len/4;
       //把res转为数组对象 [{ index:j,img:[]} ]
       for(let j=0;j<this.pictureArrLen;j++){
         this.pictureArr.push({index:j,img:res.splice(0,4)});
       }
-      console.log(this.pictureArr,'===ffffffffff');
+      console.log(this.pictureArr,'===pictureArr');
     });
   }
   // //页面进入时启动自动播放
