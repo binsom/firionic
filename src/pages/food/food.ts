@@ -19,8 +19,7 @@ export class FoodPage {
   public foods:any;
   public imgUrls=[];
   public prefixtion = 'https://fuss10.elemecdn.com';
-  public len;
-
+  public len:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public foodProvider:FoodProvider) {
   }
@@ -34,14 +33,14 @@ export class FoodPage {
   getFood(){
     this.foodProvider.getFood().subscribe(res => {
       for(let i=0;i<res.length;i++){
-        this.imgUrls.push({img:this.prefixtion+res[i].image_url});
+        this.imgUrls.push({img:this.prefixtion+res[i].image_url,title:res[i].title});
       }
       this.foods = res;
-      this.len=this.imgUrls.length;
+      this.len = this.imgUrls.length;
       console.log(this.imgUrls,'===ffffffffff');
     });
   }
-  //页面进入时启动自动播放
+  // //页面进入时启动自动播放
   ionViewDidEnter(){
     this.slides.startAutoplay();
   }
@@ -49,5 +48,6 @@ export class FoodPage {
   ionViewDidLeave(){
     this.slides.stopAutoplay();
   }
+
 
 }
