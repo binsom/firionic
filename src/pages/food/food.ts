@@ -1,5 +1,5 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams/*,Slides*/} from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Slides} from 'ionic-angular';
 import {FoodProvider} from "../../providers/binone/food";
 
 /**
@@ -50,7 +50,7 @@ export class FoodPage {
       console.log(this.pictureArr,'===pictureArr');
     });
   }
-  // //页面进入时启动自动播放
+  // // //页面进入时启动自动播放
   ionViewDidEnter(){
     this.slides.startAutoplay();
   }
