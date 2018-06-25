@@ -93,7 +93,7 @@ export class CitydetailPage {
   }
 
   cleanHistory(){
-    this.historys = [];
+    this.historyss = [];
   }
 
   //百度地图定位
