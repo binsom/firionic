@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CityProvider} from "../../providers/binone/city";
 import {SerachProvider} from "../../providers/binone/serach";
 import {FoodPage} from "../food/food";
+import {Storage} from '@ionic/storage';
 
 /**
  * Generated class for the CitydetailPage page.
@@ -10,6 +11,7 @@ import {FoodPage} from "../food/food";
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+declare var BMap;
 
 @IonicPage()
 @Component({
@@ -21,11 +23,17 @@ export class CitydetailPage {
   searchInput:any = {};
   public cityId:any;
   public searchContents:any = [];
+  public local;
+  public history:string;
+  public historys=[];
+  public historyss=[];
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public cityProvider:CityProvider,
-    public serachProvider:SerachProvider
+    public serachProvider:SerachProvider,
+    public storage: Storage
   ) {
   }
 
@@ -34,6 +42,7 @@ export class CitydetailPage {
   }
   ngOnInit(){
     this.getDetailData();
+    this.baidu();
   }
 
   getDetailData(){
@@ -47,13 +56,52 @@ export class CitydetailPage {
 
   search(name:string){
     this.serachProvider.search(this.cityId,name).subscribe(res => {
-      console.log(this.cityId,name);
       this.searchContents = res;
-      console.log(this.searchContents);
     });
   }
+  setHistory(history){
+    console.log(history);
+    this.history = JSON.stringify(history);
+    this.historys.push(history);
 
-  toFood(){
-    this.navCtrl.push(FoodPage)
+      console.log(this.historys,'===historys');
+
+      //数组去重
+      this.historyss = [];
+      for(var i=0,len=this.historys.length; i<len;i++) {
+        for (var j = i + 1; j < len; j++) {
+          if (this.historys[i].name === this.historys[j].name) {//获取没重复的最右一值放入新数组
+            ++i;
+          }
+        }
+        this.historyss.push(this.historys[i]);
+      }
+
+    console.log(this.historyss,'===========arr')
+
+    localStorage.setItem('placeHistory',this.history);
+    this.searchContents = [];
+    this.navCtrl.push(FoodPage);
   }
+
+  getHistory(){
+   localStorage.getItem('placeHistory');
+  }
+
+  ionViewDidEnter(){
+    this.getHistory();
+  }
+
+  cleanHistory(){
+    this.historys = [];
+  }
+
+  //百度地图定位
+  baidu() {
+    let local = new BMap.LocalCity();
+    local.get((result)=>{
+      console.log(result)
+    })
+  }
+
 }

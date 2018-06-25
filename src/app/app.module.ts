@@ -18,6 +18,7 @@ import {CitydetailPage} from "../pages/cityDetail/citydetail";
 import {SerachProvider} from "../providers/binone/serach";
 import {FoodProvider} from "../providers/binone/food";
 import {FoodPage} from "../pages/food/food";
+import { IonicStorageModule } from '@ionic/storage';
 
 
 
@@ -36,7 +37,8 @@ import {FoodPage} from "../pages/food/food";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -58,7 +60,8 @@ import {FoodPage} from "../pages/food/food";
     HttpClientModule,
     CityProvider,
     SerachProvider,
-    FoodProvider
+    FoodProvider,
+    Storage
   ]
 })
 export class AppModule {}

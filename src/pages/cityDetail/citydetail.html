@@ -18,10 +18,21 @@
   <button ion-button (click)="search(searchInput.name)">提交</button>
   <ion-list>
     <ion-item *ngFor="let searchCont of searchContents">
-        <div>
-          {{searchCont.name}}
-        </div>
-        <span class="spanFont" (click)="toFood()">{{searchCont.address}}</span>
+      <div (click)="setHistory(searchCont)">
+          <div>
+            {{searchCont.name}}
+          </div>
+          <span class="spanFont">{{searchCont.address}}</span>
+      </div>
     </ion-item>
   </ion-list>
+
+  <ion-item *ngIf="history">
+    <div *ngFor="let eachHistory of historyss">
+      <div>{{eachHistory.name}}</div>
+    </div>
+    <button (click)="cleanHistory()">清空</button>
+  </ion-item>
+
 </ion-content>
+
