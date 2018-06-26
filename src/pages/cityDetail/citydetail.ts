@@ -42,7 +42,7 @@ export class CitydetailPage {
   }
   ngOnInit(){
     this.getDetailData();
-    this.baidu();
+    this.mapLocal();
   }
 
   getDetailData(){
@@ -81,7 +81,7 @@ export class CitydetailPage {
 
     localStorage.setItem('placeHistory',this.history);
     this.searchContents = [];
-    this.navCtrl.push(FoodPage);
+    this.navCtrl.push(FoodPage,history);
   }
 
   getHistory(){
@@ -97,7 +97,7 @@ export class CitydetailPage {
   }
 
   //百度地图定位
-  baidu() {
+  mapLocal() {
     let local = new BMap.LocalCity();
     local.get((result)=>{
       console.log(result)

@@ -19,6 +19,9 @@ import {SerachProvider} from "../providers/binone/serach";
 import {FoodProvider} from "../providers/binone/food";
 import {FoodPage} from "../pages/food/food";
 import { IonicStorageModule } from '@ionic/storage';
+import {LoginPage} from "../pages/login/login";
+import {LoginProvider} from "../providers/binone/loginService";
+import {RestaurantsProvider} from "../providers/binone/restaurants";
 
 
 
@@ -32,7 +35,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Page1,
     Page2,
     CitydetailPage,
-    FoodPage
+    FoodPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Page1,
     Page2,
     CitydetailPage,
-    FoodPage
+    FoodPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -61,7 +66,9 @@ import { IonicStorageModule } from '@ionic/storage';
     CityProvider,
     SerachProvider,
     FoodProvider,
-    Storage
+    Storage,
+    LoginProvider,
+    RestaurantsProvider
   ]
 })
 export class AppModule {}

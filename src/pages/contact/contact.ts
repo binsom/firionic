@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {CityProvider} from "../../providers/binone/city";
 import {CitydetailPage} from "../cityDetail/citydetail";
+import {LoginPage} from "../login/login";
 
 @Component({
   selector: 'page-contact',
@@ -44,6 +45,10 @@ export class ContactPage {
 
   toDetail(detail){
     this.navCtrl.push(CitydetailPage,detail);
+  }
+
+  toLoginPage(){
+    this.navCtrl.push(LoginPage);
   }
 
 

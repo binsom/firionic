@@ -1,6 +1,7 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams,Slides} from 'ionic-angular';
 import {FoodProvider} from "../../providers/binone/food";
+import {RestaurantsProvider} from "../../providers/binone/restaurants";
 
 /**
  * Generated class for the FoodPage page.
@@ -23,8 +24,13 @@ export class FoodPage {
 
   public pictureArr=[];
   public pictureArrLen:any;
+  public title:any;
+  public restaurantsList=[];
+  public latitude:any;
+  public longitude:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public foodProvider:FoodProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public foodProvider:FoodProvider,public restaurantsProvider:RestaurantsProvider) {
+
   }
 
   ionViewDidLoad() {
@@ -32,10 +38,17 @@ export class FoodPage {
   }
   ngOnInit(){
     this.getFood();
+    this.getRestaurantsList();
   }
   getFood(){
+    console.log( this.navParams,'从detail页面传过来的');
+
+    this.title = this.navParams.data.name;
+    this.latitude = this.navParams.data.latitude;
+    this.longitude = this.navParams.data.longitude;
+
     this.foodProvider.getFood().subscribe(res => {
-      console.log(res,'===res');
+      console.log(res,'===getFood res');
       for(let i=0;i<res.length;i++){
          res[i].image_url = this.prefixtion+res[i].image_url;
       }
@@ -47,17 +60,25 @@ export class FoodPage {
       for(let j=0;j<this.pictureArrLen;j++){
         this.pictureArr.push({index:j,img:res.splice(0,4)});
       }
-      console.log(this.pictureArr,'===pictureArr');
     });
   }
+
+
+
+  getRestaurantsList(){
+    this.restaurantsProvider.shopList(this.latitude,this.longitude).subscribe(res => {
+        console.log(res,'获取商铺列表的数据')
+    });
+  }
+
   // // //页面进入时启动自动播放
-  ionViewDidEnter(){
-    this.slides.startAutoplay();
-  }
-  //页面离开时停止自动播放
-  ionViewDidLeave(){
-    this.slides.stopAutoplay();
-  }
+  // ionViewDidEnter(){
+  //   this.slides.startAutoplay();
+  // }
+  // //页面离开时停止自动播放
+  // ionViewDidLeave(){
+  //   this.slides.stopAutoplay();
+  // }
 
 
 }
