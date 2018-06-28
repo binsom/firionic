@@ -27,6 +27,9 @@ export class CitydetailPage {
   public history:string;
   public historys=[];
   public historyss=[];
+  public classFlag = true;
+
+
 
   constructor(
     public navCtrl: NavController,
@@ -57,6 +60,7 @@ export class CitydetailPage {
   search(name:string){
     this.serachProvider.search(this.cityId,name).subscribe(res => {
       this.searchContents = res;
+      console.log(this.searchContents,55555555);
     });
   }
   setHistory(history){
@@ -102,6 +106,12 @@ export class CitydetailPage {
     local.get((result)=>{
       console.log(result)
     })
+  }
+
+
+  // 动态控制类名
+  changeClass(): void {
+    this.classFlag = !this.classFlag;
   }
 
 }

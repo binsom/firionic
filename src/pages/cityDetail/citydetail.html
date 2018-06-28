@@ -19,11 +19,13 @@
   <ion-list>
     <ion-item *ngFor="let searchCont of searchContents">
       <div (click)="setHistory(searchCont)">
-          <div>
+          <div [ngClass]="{'first': classFlag, 'second': classFlag, 'third': !classFlag}">
             {{searchCont.name}}
           </div>
-          <span class="spanFont">{{searchCont.address}}</span>
+          <span [class.addressSpan]="classFlag">{{searchCont.address}}</span>
+          <span [ngClass]="searchCont.latitude <=40?'latColor':'latColortwo'">{{searchCont.latitude}}</span>
       </div>
+
     </ion-item>
   </ion-list>
 
@@ -33,7 +35,7 @@
     </div>
     <button (click)="cleanHistory()">清空</button>
   </ion-item>
-
+  <button (click)="changeClass()">切换</button>
 
 </ion-content>
 

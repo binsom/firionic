@@ -18,4 +18,15 @@
       </div>
     </ion-slide>
   </ion-slides>
+
+  <ion-list>
+    <ion-item *ngFor="let restaurantsList of restaurantsLists">
+      <ion-thumbnail item-start>
+        {{restaurantsList.id}}
+      </ion-thumbnail>
+      <h2 (click)="showAlert(restaurantsList.category)">{{restaurantsList.category}}</h2>
+      <p>{{restaurantsList.address}}</p>
+      <button ion-button clear item-end>{{restaurantsList.piecewise_agent_fee.tips}}</button>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -2,6 +2,7 @@ import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams,Slides} from 'ionic-angular';
 import {FoodProvider} from "../../providers/binone/food";
 import {RestaurantsProvider} from "../../providers/binone/restaurants";
+import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the FoodPage page.
@@ -25,11 +26,11 @@ export class FoodPage {
   public pictureArr=[];
   public pictureArrLen:any;
   public title:any;
-  public restaurantsList=[];
+  public restaurantsLists=[];
   public latitude:any;
   public longitude:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public foodProvider:FoodProvider,public restaurantsProvider:RestaurantsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public foodProvider:FoodProvider,public restaurantsProvider:RestaurantsProvider,public alertCtrl: AlertController) {
 
   }
 
@@ -67,7 +68,8 @@ export class FoodPage {
 
   getRestaurantsList(){
     this.restaurantsProvider.shopList(this.latitude,this.longitude).subscribe(res => {
-        console.log(res,'获取商铺列表的数据')
+        this.restaurantsLists = res;
+        console.log(res,'获取商铺列表的数据',this.restaurantsLists)
     });
   }
 
@@ -79,6 +81,15 @@ export class FoodPage {
   // ionViewDidLeave(){
   //   this.slides.stopAutoplay();
   // }
+
+  showAlert(category){
+    const alert = this.alertCtrl.create({
+      title: '地址',
+      subTitle: category,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 
 }

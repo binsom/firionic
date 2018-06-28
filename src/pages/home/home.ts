@@ -54,6 +54,8 @@ export class HomePage {
     });
 }
 
+
+
   initializeItems() {
     this.items = [
       'Amsterdam',

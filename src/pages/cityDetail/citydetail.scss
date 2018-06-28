@@ -1,7 +1,23 @@
 page-citydetail {
   ion-content{
-    .spanFont{
+    .first {
+      background: cornflowerblue;
+    }
+    .second {
+      color: green;
+    }
+    .third {
+      font-size: 22px;
+    }
+    .addressSpan{
       font-size: 12px;
+      color: red;
+    }
+    .latColor{
+      color: purple;
+    }
+    .latColortwo{
+      color: #2ec95c;
     }
   }
   body,#mapContainer{
