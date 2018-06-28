@@ -3,9 +3,9 @@
  */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
+// import { Observable } from 'rxjs/Observable';
+// import 'rxjs/add/observable/of';
+// import 'rxjs/add/operator/map';
 
 @Injectable()
 export class LoginProvider {
@@ -17,7 +17,7 @@ export class LoginProvider {
 
   }
 
-
+  //
   // captchas(): Observable<any> {
   //     return this.http.post(
   //       'http://cangdu.org:8001/v1/captchas'

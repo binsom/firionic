@@ -60,7 +60,6 @@ export class CitydetailPage {
   search(name:string){
     this.serachProvider.search(this.cityId,name).subscribe(res => {
       this.searchContents = res;
-      console.log(this.searchContents,55555555);
     });
   }
   setHistory(history){

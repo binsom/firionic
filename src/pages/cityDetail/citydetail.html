@@ -5,13 +5,10 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>{{navData.name}}</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <ion-searchbar [(ngModel)]="searchInput.name" placeholder="搜索学校、地址"></ion-searchbar>
@@ -25,7 +22,6 @@
           <span [class.addressSpan]="classFlag">{{searchCont.address}}</span>
           <span [ngClass]="searchCont.latitude <=40?'latColor':'latColortwo'">{{searchCont.latitude}}</span>
       </div>
-
     </ion-item>
   </ion-list>
 
@@ -35,7 +31,9 @@
     </div>
     <button (click)="cleanHistory()">清空</button>
   </ion-item>
-  <button (click)="changeClass()">切换</button>
-
+  <button (click)="changeClass()">切换颜色</button>
+  <ion-icon name="backlog"></ion-icon>
+  <ion-icon name="add"></ion-icon>
+  <ion-icon name="richScan"></ion-icon>
 </ion-content>
 
