@@ -8,21 +8,19 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
 
-  <div *ngFor="let hot of hotCitys" (click)="toDetail(hot)">
-    {{hot.name}}
+  <div class="flex-container">
+    <div class="flex-item" *ngFor="let hot of hotCitys" (click)="toDetail(hot)">
+     {{hot.name}}
+    </div>
   </div>
 
+    <div *ngFor="let citys of finCity">
+      <div class="letter">{{citys.sort}}</div>
+      <div class="flex-container">
+         <div class="flex-item" *ngFor="let cityName of citys.cityContents">{{cityName.name}}</div>
+      </div>
+    </div>
 
-   <div *ngFor="let citys of finCity">
-     <span>{{citys.sort}}</span>
-     <a *ngFor="let cityName of citys.cityContents">{{cityName.name}}</a>
-   </div>
+
 </ion-content>

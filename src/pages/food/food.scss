@@ -2,11 +2,20 @@ page-food {
   ion-content{
     ion-slides{
       height: 40% !important;
-      .foodImg{
-        width: 40px !important;
-        height: 40px;
+    }
+    .flex-container {
+        display: -webkit-flex;
+        display: flex;
+        width: 100%;
+        flex-direction:row;
+        flex-wrap:wrap;
+      .flex-item {
+        width: 25%;
       }
     }
+
+
+
 
   }
 }

@@ -56,16 +56,13 @@ export class FoodPage {
       this.foods = res;
       this.len = res.length;
       //多少组
-      this.pictureArrLen = this.len/4;
+      this.pictureArrLen = this.len/8;
       //把res转为数组对象 [{ index:j,img:[]} ]
       for(let j=0;j<this.pictureArrLen;j++){
-        this.pictureArr.push({index:j,img:res.splice(0,4)});
+        this.pictureArr.push({index:j,img:res.splice(0,8)});
       }
     });
   }
-
-
-
   getRestaurantsList(){
     this.restaurantsProvider.shopList(this.latitude,this.longitude).subscribe(res => {
         this.restaurantsLists = res;

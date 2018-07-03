@@ -13,16 +13,21 @@
 <ion-content padding>
   <ion-slides #slides pager loop="true" autoplay="1000" *ngIf="len >=1">
     <ion-slide *ngFor="let foodImg of pictureArr">
-      <div *ngFor="let food of foodImg.img">
-        <img class="foodImg" src="{{food.image_url}}">
+      <div class="flex-container">
+        <div class="flex-item" *ngFor="let food of foodImg.img">
+          <img class="foodImg" src="{{food.image_url}}">
+        </div>
       </div>
     </ion-slide>
   </ion-slides>
+
 
   <ion-list>
     <ion-item *ngFor="let restaurantsList of restaurantsLists">
       <ion-thumbnail item-start>
         {{restaurantsList.id}}
+        <img class="shop_img" src="{{restaurantsList.image_path}}">
+
       </ion-thumbnail>
       <h2 (click)="showAlert(restaurantsList.category)">{{restaurantsList.category}}</h2>
       <p>{{restaurantsList.address}}</p>

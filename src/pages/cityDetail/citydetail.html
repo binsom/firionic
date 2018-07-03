@@ -19,6 +19,7 @@
           <div [ngClass]="{'first': classFlag, 'second': classFlag, 'third': !classFlag}">
             {{searchCont.name}}
           </div>
+
           <span [class.addressSpan]="classFlag">{{searchCont.address}}</span>
           <span [ngClass]="searchCont.latitude <=40?'latColor':'latColortwo'">{{searchCont.latitude}}</span>
       </div>
