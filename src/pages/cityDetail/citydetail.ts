@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CityProvider} from "../../providers/binone/city";
 import {SerachProvider} from "../../providers/binone/serach";
-import {FoodPage} from "../food/food";
 import {Storage} from '@ionic/storage';
+import {TabsPage} from "../tabs/tabs";
+import {FoodPage} from "../food/food";
+import {HttpClient, HttpParams} from "@angular/common/http";
+import ECharts from 'echarts';
 
 /**
  * Generated class for the CitydetailPage page.
@@ -28,7 +31,15 @@ export class CitydetailPage {
   public historys=[];
   public historyss=[];
   public classFlag = true;
-
+  public placeName:string;
+  public allHistory=[];
+  public getStore;
+  public pushPage;
+  public params;
+  public focus;
+  public flag:boolean = false;
+  public tel:number = 13413757483;
+  public myDate='2017-10';    // 注意：一定要写成‘YYYY-MM-DD’这样的形式，不要写成‘YYYY/MM/DD’等其他的样式，不用与ion-datetime标签设置的样式一样
 
 
   constructor(
@@ -36,7 +47,8 @@ export class CitydetailPage {
     public navParams: NavParams,
     public cityProvider:CityProvider,
     public serachProvider:SerachProvider,
-    public storage: Storage
+    public storage: Storage,
+    private http : HttpClient
   ) {
   }
 
@@ -44,9 +56,23 @@ export class CitydetailPage {
     console.log('ionViewDidLoad CitydetailPage');
   }
   ngOnInit(){
+    this.pushPage = FoodPage;
+    this.params={id:22};
     this.getDetailData();
     this.mapLocal();
+    document.getElementById('turnBtn').style.backgroundColor ='yellow';
+    this.storage.get("kk").then((value)=>{
+      console.log("这里是storage的get来获取======="+value);
+    });
   }
+
+  test(){
+    this.cityProvider.test().subscribe(res => {
+        console.log(res,'test的post类型');
+    });
+  }
+
+
 
   getDetailData(){
     this.navData = this.navParams;
@@ -55,6 +81,22 @@ export class CitydetailPage {
     this.cityProvider.getDetailCity(id).subscribe(res => {
       this.navData = res;
     });
+
+    this.cityProvider.getPicture().subscribe(res => {
+      this.focus = res;
+      if(res){
+        this.flag = true;
+      }
+      if(this.flag){
+        console.log(res,'===picture res');
+      }
+    });
+
+    this.placeName = localStorage.getItem('placeName');
+    this.allHistory = JSON.parse(localStorage.getItem('allHistory'));
+    console.log(localStorage.getItem('placeName'),'p111111111');
+    console.log(this.placeName,'ppppppppppppppp');
+    console.log(this.allHistory,typeof(this.allHistory),'kkkkkkkkkkkkkkkkkkkkk');
   }
 
   search(name:string){
@@ -63,12 +105,10 @@ export class CitydetailPage {
     });
   }
   setHistory(history){
-    console.log(history);
+    console.log(history,'===history');
     this.history = JSON.stringify(history);
     this.historys.push(history);
-
       console.log(this.historys,'===historys');
-
       //数组去重
       this.historyss = [];
       for(var i=0,len=this.historys.length; i<len;i++) {
@@ -81,10 +121,11 @@ export class CitydetailPage {
       }
 
     console.log(this.historyss,'===========arr')
-
-    localStorage.setItem('placeHistory',this.history);
+    localStorage.setItem('placeName',history.name);
+    localStorage.setItem('placeHistory',JSON.stringify(this.historys));
+    localStorage.setItem('allHistory',JSON.stringify(this.historyss));
     this.searchContents = [];
-    this.navCtrl.push(FoodPage,history);
+    this.navCtrl.push(TabsPage,history);
   }
 
   getHistory(){
@@ -96,9 +137,8 @@ export class CitydetailPage {
   }
 
   cleanHistory(){
-    this.historyss = [];
+    this.allHistory = [];
   }
-
   //百度地图定位
   mapLocal() {
     let local = new BMap.LocalCity();
@@ -106,11 +146,8 @@ export class CitydetailPage {
       console.log(result)
     })
   }
-
-
   // 动态控制类名
   changeClass(): void {
     this.classFlag = !this.classFlag;
   }
-
 }

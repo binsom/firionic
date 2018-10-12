@@ -11,30 +11,37 @@
 </ion-header>
 
 <ion-content padding>
+  <!--<ion-datetime displayFormat="YYYY年MM月" cancelText="取消" doneText="确定" [(ngModel)]="myDate"></ion-datetime>-->
+
+
   <ion-searchbar [(ngModel)]="searchInput.name" placeholder="搜索学校、地址"></ion-searchbar>
   <button ion-button (click)="search(searchInput.name)">提交</button>
+  <button [navPush]="pushPage" [navParams]="params">Go</button>
+  <button (click)="test()">试试test的post</button>
+
+
   <ion-list>
     <ion-item *ngFor="let searchCont of searchContents">
       <div (click)="setHistory(searchCont)">
           <div [ngClass]="{'first': classFlag, 'second': classFlag, 'third': !classFlag}">
             {{searchCont.name}}
           </div>
-
           <span [class.addressSpan]="classFlag">{{searchCont.address}}</span>
           <span [ngClass]="searchCont.latitude <=40?'latColor':'latColortwo'">{{searchCont.latitude}}</span>
       </div>
     </ion-item>
   </ion-list>
 
-  <ion-item *ngIf="history">
-    <div *ngFor="let eachHistory of historyss">
+  <ion-item *ngIf="placeName">
+    <div *ngFor="let eachHistory of allHistory">
       <div>{{eachHistory.name}}</div>
     </div>
     <button (click)="cleanHistory()">清空</button>
   </ion-item>
-  <button (click)="changeClass()">切换颜色</button>
+  <button id="turnBtn" (click)="changeClass()">切换颜色</button>
   <ion-icon name="backlog"></ion-icon>
   <ion-icon name="add"></ion-icon>
   <ion-icon name="richScan"></ion-icon>
+
 </ion-content>
 
