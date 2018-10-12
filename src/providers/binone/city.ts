@@ -49,4 +49,21 @@ export class CityProvider {
     })  //map的返回就是原本的数据类型
   };
 
+  sendCode(): Observable<any> {
+    return this.http.post(
+      "http://39.108.159.135/api/sendCode",
+      {
+        tel:18400163789
+      },
+      {
+        headers:new HttpHeaders({
+          "Content-Type":"application/json",
+          "Accept":"application/json"
+        })
+      }
+    ).map(res => {
+      return res;
+    })
+  };
+
 }

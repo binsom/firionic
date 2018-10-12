@@ -51,4 +51,10 @@ export class LoginPage {
   //   });
   // }
 
+  login(){
+    this.loginProvider.login().subscribe(res=>{
+      console.log(res,'请求登录接口')
+    });
+  }
+
 }

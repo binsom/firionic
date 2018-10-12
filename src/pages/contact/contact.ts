@@ -4,6 +4,7 @@ import {CityProvider} from "../../providers/binone/city";
 import {CitydetailPage} from "../cityDetail/citydetail";
 import {LoginPage} from "../login/login";
 import {Storage} from '@ionic/storage';
+import {RegisterPage} from "../register/register";
 
 @Component({
   selector: 'page-contact',
@@ -55,5 +56,9 @@ export class ContactPage {
 
   toLoginPage(){
     this.navCtrl.push(LoginPage);
+  }
+
+  toRegisterPage(){
+    this.navCtrl.push(RegisterPage);
   }
 }

@@ -23,6 +23,9 @@ import {LoginPage} from "../pages/login/login";
 import {LoginProvider} from "../providers/binone/loginService";
 import {RestaurantsProvider} from "../providers/binone/restaurants";
 import {RestaurantDetailsPage} from "../pages/restaurant-details/restaurant-details";
+import {RegisterPage} from "../pages/register/register";
+import {RegisterServeProvider} from "../providers/register-serve/register-serve";
+
 // import { HttpModule,JsonpModule } from '@angular/http'; /*数据请求模块*/
 
 
@@ -39,7 +42,8 @@ import {RestaurantDetailsPage} from "../pages/restaurant-details/restaurant-deta
     CitydetailPage,
     FoodPage,
     LoginPage,
-    RestaurantDetailsPage
+    RestaurantDetailsPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,8 @@ import {RestaurantDetailsPage} from "../pages/restaurant-details/restaurant-deta
     CitydetailPage,
     FoodPage,
     LoginPage,
-    RestaurantDetailsPage
+    RestaurantDetailsPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
@@ -77,7 +82,8 @@ import {RestaurantDetailsPage} from "../pages/restaurant-details/restaurant-deta
     FoodProvider,
     Storage,
     LoginProvider,
-    RestaurantsProvider
+    RestaurantsProvider,
+    RegisterServeProvider
   ]
 })
 export class AppModule {}

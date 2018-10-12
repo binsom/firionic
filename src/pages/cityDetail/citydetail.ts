@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {CityProvider} from "../../providers/binone/city";
 import {SerachProvider} from "../../providers/binone/serach";
 import {Storage} from '@ionic/storage';
 import {TabsPage} from "../tabs/tabs";
 import {FoodPage} from "../food/food";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import ECharts from 'echarts';
 
 /**
  * Generated class for the CitydetailPage page.
@@ -16,12 +14,15 @@ import ECharts from 'echarts';
  */
 declare var BMap;
 
+
 @IonicPage()
 @Component({
   selector: 'page-citydetail',
   templateUrl: 'citydetail.html',
 })
 export class CitydetailPage {
+  @ViewChild('myattr') myattr: ElementRef;
+
   navData:any;
   searchInput:any = {};
   public cityId:any;
@@ -47,13 +48,16 @@ export class CitydetailPage {
     public navParams: NavParams,
     public cityProvider:CityProvider,
     public serachProvider:SerachProvider,
-    public storage: Storage,
-    private http : HttpClient
+    public storage: Storage
   ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CitydetailPage');
+   this.getDom();
+
+
+
   }
   ngOnInit(){
     this.pushPage = FoodPage;
@@ -66,12 +70,30 @@ export class CitydetailPage {
     });
   }
 
+  getDom(){//引入ElementRef操作dom节点
+    let el: HTMLElement = <HTMLElement>this.myattr.nativeElement;
+    el.onclick = function (e) {
+        if(e.srcElement.nodeName=='SPAN'){
+          var ele:any=e.target; //获取当前点击的元素
+          console.log(ele,'===获取当前点击的元素');
+        }
+    }
+    console.log(el,'===========el');
+
+  }
+
+
   test(){
     this.cityProvider.test().subscribe(res => {
         console.log(res,'test的post类型');
     });
   }
 
+  sendCode(){
+    this.cityProvider.sendCode().subscribe(res => {
+      console.log(res,'sendCode方法');//"5751"
+    });
+  }
 
 
   getDetailData(){
@@ -82,15 +104,15 @@ export class CitydetailPage {
       this.navData = res;
     });
 
-    this.cityProvider.getPicture().subscribe(res => {
-      this.focus = res;
-      if(res){
-        this.flag = true;
-      }
-      if(this.flag){
-        console.log(res,'===picture res');
-      }
-    });
+    // this.cityProvider.getPicture().subscribe(res => {
+    //   this.focus = res;
+    //   if(res){
+    //     this.flag = true;
+    //   }
+    //   if(this.flag){
+    //     console.log(res,'===picture res');
+    //   }
+    // });
 
     this.placeName = localStorage.getItem('placeName');
     this.allHistory = JSON.parse(localStorage.getItem('allHistory'));

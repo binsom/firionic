@@ -18,7 +18,11 @@
   <button ion-button (click)="search(searchInput.name)">提交</button>
   <button [navPush]="pushPage" [navParams]="params">Go</button>
   <button (click)="test()">试试test的post</button>
+  <button (click)="sendCode()">试试验证码方法sendCode</button>
 
+  <div #myattr>
+    <span>获取 DOM 节点得写到 ionViewDidLoad</span>
+  </div>
 
   <ion-list>
     <ion-item *ngFor="let searchCont of searchContents">

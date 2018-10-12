@@ -3,9 +3,10 @@
  */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/observable/of';
-// import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable()
 export class LoginProvider {
@@ -34,6 +35,24 @@ export class LoginProvider {
   //     return res;
   //   })
   // }
+
+  login(): Observable<any> {
+    return this.http.post(
+      "http://39.108.159.135/api/doLogin",
+      {
+        tel:18400163785,
+        password:"336699"
+      },
+      {
+        headers:new HttpHeaders({
+          "Content-Type":"application/json",
+          "Accept":"application/json"
+        })
+      }
+    ).map(res => {
+      return res;
+    })
+  };
 
 
 }
