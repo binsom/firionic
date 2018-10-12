@@ -21,4 +21,13 @@ export class RestaurantsProvider {
       return res;
     })
   }
+
+
+  restaurantDetails(shopid:number): Observable<any> {
+    return this.http.get(
+      'https://elm.cangdu.org/shopping/restaurant/'+shopid
+    ).map(res => {
+      return res;
+    })
+  }
 }

@@ -51,10 +51,9 @@ export class HomePage {
       //一旦请求完成之后，$event.complete()手动结束
       loadEvent.complete();
       console.log(this.news,666);
+
     });
 }
-
-
 
   initializeItems() {
     this.items = [

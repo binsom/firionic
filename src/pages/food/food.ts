@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams,Slides} from 'ionic-angular';
 import {FoodProvider} from "../../providers/binone/food";
 import {RestaurantsProvider} from "../../providers/binone/restaurants";
 import { AlertController } from 'ionic-angular';
+import {ContactPage} from "../contact/contact";
+import {RestaurantDetailsPage} from "../restaurant-details/restaurant-details";
+
 
 /**
  * Generated class for the FoodPage page.
@@ -40,15 +43,21 @@ export class FoodPage {
   ngOnInit(){
     this.getFood();
     this.getRestaurantsList();
+    let id = this.navParams.get("id");
+    console.log(id,'===id');
   }
   getFood(){
     console.log( this.navParams,'从detail页面传过来的');
 
-    this.title = this.navParams.data.name;
+    // this.title = this.navParams.data.name;
+    this.title = localStorage.getItem('placeName');
+
     this.latitude = this.navParams.data.latitude;
     this.longitude = this.navParams.data.longitude;
 
+
     this.foodProvider.getFood().subscribe(res => {
+
       console.log(res,'===getFood res');
       for(let i=0;i<res.length;i++){
          res[i].image_url = this.prefixtion+res[i].image_url;
@@ -58,6 +67,7 @@ export class FoodPage {
       //多少组
       this.pictureArrLen = this.len/8;
       //把res转为数组对象 [{ index:j,img:[]} ]
+
       for(let j=0;j<this.pictureArrLen;j++){
         this.pictureArr.push({index:j,img:res.splice(0,8)});
       }
@@ -88,5 +98,14 @@ export class FoodPage {
     alert.present();
   }
 
+  goBack(){
+    this.navCtrl.push(ContactPage);
+  }
+  restaurantDetails(restaurantId){
+    this.restaurantsProvider.restaurantDetails(restaurantId).subscribe(res => {
+      console.log(res,'商铺详情数据');
+      this.navCtrl.push(RestaurantDetailsPage);
+    });
+  }
 
 }

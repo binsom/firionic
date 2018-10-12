@@ -22,6 +22,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import {LoginPage} from "../pages/login/login";
 import {LoginProvider} from "../providers/binone/loginService";
 import {RestaurantsProvider} from "../providers/binone/restaurants";
+import {RestaurantDetailsPage} from "../pages/restaurant-details/restaurant-details";
+// import { HttpModule,JsonpModule } from '@angular/http'; /*数据请求模块*/
 
 
 
@@ -36,11 +38,17 @@ import {RestaurantsProvider} from "../providers/binone/restaurants";
     Page2,
     CitydetailPage,
     FoodPage,
-    LoginPage
+    LoginPage,
+    RestaurantDetailsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    // HttpModule,JsonpModule,
+    // IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{
+      tabsHideOnSubPages: 'true', //隐藏全部子页面 tabs
+      backButtonText: '返回' /*配置返回按钮*/
+    }),
     HttpClientModule,
     IonicStorageModule.forRoot()
   ],
@@ -55,7 +63,8 @@ import {RestaurantsProvider} from "../providers/binone/restaurants";
     Page2,
     CitydetailPage,
     FoodPage,
-    LoginPage
+    LoginPage,
+    RestaurantDetailsPage
   ],
   providers: [
     StatusBar,

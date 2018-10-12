@@ -7,11 +7,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
+import {HttpHeaders} from "@angular/common/http";
+
 @Injectable()
 export class CityProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello CityProvider Provider');
+  console.log('Hello CityProvider Provider');
 
   }
 
@@ -33,5 +35,18 @@ export class CityProvider {
     })
   }
 
+  test(): Observable<any> {
+    return this.http.post(
+      "https://elm.cangdu.org/v1/captchas",
+      {
+        headers:new HttpHeaders({
+          "Content-Type":"application/json",
+          "Accept":"application/json"
+        })
+      }
+    ).map(res => {
+      return res;
+    })  //map的返回就是原本的数据类型
+  };
 
 }

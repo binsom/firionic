@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import {CityProvider} from "../../providers/binone/city";
 import {CitydetailPage} from "../cityDetail/citydetail";
 import {LoginPage} from "../login/login";
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'page-contact',
@@ -13,7 +14,7 @@ export class ContactPage {
   public groupCitys:any = [];
   public finCity:any = [];
 
-  constructor(public navCtrl: NavController,public cityProvider:CityProvider) {
+  constructor(public navCtrl: NavController,public cityProvider:CityProvider,public storage:Storage) {
 
   }
 
@@ -27,6 +28,7 @@ export class ContactPage {
       for(var key in res){
           this.groupCitys.push(key);
       }
+
       this.groupCitys.sort();
       for(let i=0;i<this.groupCitys.length;i++){
         this.finCity.push({'sort':this.groupCitys[i],'cityContents':res[this.groupCitys[i]]})
@@ -34,6 +36,7 @@ export class ContactPage {
     });
 
     console.log(this.finCity,123)
+
   }
 
   hot(){
@@ -41,6 +44,9 @@ export class ContactPage {
        this.hotCitys = res;
        console.log(this.hotCitys,555)
     });
+    this.storage.set("kk","storage的set方法")
+
+
   }
 
   toDetail(detail){
@@ -50,6 +56,4 @@ export class ContactPage {
   toLoginPage(){
     this.navCtrl.push(LoginPage);
   }
-
-
 }

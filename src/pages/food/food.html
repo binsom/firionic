@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar (click)="goBack()">
     <ion-title>{{title}}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -26,12 +26,12 @@
     <ion-item *ngFor="let restaurantsList of restaurantsLists">
       <ion-thumbnail item-start>
         {{restaurantsList.id}}
-        <img class="shop_img" src="{{restaurantsList.image_path}}">
+        <!--<img class="shop_img" src="{{restaurantsList.image_path}}">-->
 
       </ion-thumbnail>
-      <h2 (click)="showAlert(restaurantsList.category)">{{restaurantsList.category}}</h2>
+      <h2 (click)="restaurantDetails(restaurantsList.id)">{{restaurantsList.category}}</h2>
       <p>{{restaurantsList.address}}</p>
-      <button ion-button clear item-end>{{restaurantsList.piecewise_agent_fee.tips}}</button>
+      <button (click)="showAlert(restaurantsList.category)" ion-button clear item-end>{{restaurantsList.piecewise_agent_fee.tips}}</button>
     </ion-item>
   </ion-list>
 </ion-content>
